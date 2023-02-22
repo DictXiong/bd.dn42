@@ -18,9 +18,10 @@ rm_network()
 
 setup_ns1()
 {
+    docker pull dictxiong/ns1.bd.dn42
     docker run --cap-add NET_ADMIN --cap-add NET_RAW --cap-add NET_BROADCAST \
         --network dn42-anycast --ip 172.21.123.78 --ip6 fda5:adba:5953:53::53 \
-        --name dn42-ns1 --restart always -d dictxiong/ns1.bd.dn42
+        --name dn42-ns1 --restart always -d dictxiong/ns1.bd.dn42:latest
     docker network connect --ip 172.18.53.2 --ip6 fd5f:1867:ac9e:63ab::2 dn42-nat dn42-ns1
 }
 
