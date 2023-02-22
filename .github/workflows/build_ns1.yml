@@ -47,5 +47,7 @@ jobs:
         with:
           context: ./anycast/ns1
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: |
+            ${{ steps.meta.outputs.tags }}
+            dictxiong/ns1.bd.dn42:latest
           labels: ${{ steps.meta.outputs.labels }}
