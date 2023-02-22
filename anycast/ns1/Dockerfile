@@ -7,6 +7,7 @@ RUN sh -c "echo http://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/re
 #    && (curl dotfiles.cn | bash -s - -al)
 COPY supervisord.conf /etc/supervisord.conf
 COPY bird.conf /etc/bird.conf
-RUN mkdir -p /opt && cd /opt && git clone https://github.com/DictXiong/bd.dn42 && bash bd.dn42/anycast/ns1/dnsmasq/deploy.sh
+COPY dnsmasq.conf /etc/dnsmasq.conf
+RUN mkdir -p /opt && cd /opt && git clone https://github.com/DictXiong/bd.dn42
 
 ENTRYPOINT ["/usr/bin/supervisord", "-n"]
