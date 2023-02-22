@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - "ns1/**"
-  workflow_dispatch
+  workflow_dispatch: ~
 jobs:
   ns1:
     runs-on: ubuntu-latest
