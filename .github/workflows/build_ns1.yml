@@ -1,11 +1,11 @@
-name: docker build ns1.bd.dn42
+name: "docker build ns1.bd.dn42"
 
 on:
   push:
     paths:
       - "ns1/**"
 jobs:
-  docker:
+  ns1:
     runs-on: ubuntu-latest
     steps:
       -
