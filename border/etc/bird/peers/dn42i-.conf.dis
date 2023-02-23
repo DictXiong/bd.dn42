@@ -1,6 +1,6 @@
-protocol bgp dn42i_XXX_v6 from dnpeers {
+protocol bgp dn42i_${PEER_NAME}_v6 from dnpeers {
     local as OWNAS;
-    neighbor fe80::XXXX % 'dn42i-XXX' as OWNAS;
+    neighbor fe80::${PEER_LA_SUFFIX} % 'dn42i-${PEER_NAME}' as OWNAS;
     direct;
     ipv4 {
         next hop self;

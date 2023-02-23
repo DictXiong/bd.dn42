@@ -1,4 +1,4 @@
-protocol bgp dn42e_XXXX_v6 from dnpeers {
-        neighbor fe80::XXXX % 'dn42e-XXXX' as 424242XXXX;
+protocol bgp dn42e_${PEER_ASN_SUFFIX}_v6 from dnpeers {
+        neighbor fe80::${PEER_LA_SUFFIX} % 'dn42e-${PEER_ASN_SUFFIX}' as 424242${PEER_ASN_SUFFIX};
         direct;
 }
