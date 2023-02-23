@@ -61,11 +61,11 @@ if [[ -z "$REPLY" ]]; then
     fi
     echo "Use suffix: $MY_LA_SUFFIX"
 else
-    export MY_LA_SUFFIX=$REPLY
+    export MY_LA_SUFFIX=${REPLY,,}
 fi
 read -p "Your GUA (in dn42, it's a ULA) suffix: "
 test_not_empty "$REPLY" "Please provide GUA suffix"
-export MY_GUA_SUFFIX=$REPLY
+export MY_GUA_SUFFIX=${REPLY,,}
 read -p "Your IPv4 address: "
 test_not_empty "$REPLY" "Please provide your IPv4 address"
 export MY_ADDR=$REPLY

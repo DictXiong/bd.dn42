@@ -3,8 +3,17 @@ set -e
 THIS_DIR=$( cd "$( dirname "${BASH_SOURCE[0]:-${(%):-%x}}" )" && pwd )
 THIS_FILE=$(basename "${BASH_SOURCE}")
 
+test_not_empty()
+{
+    if [[ -z "$1" ]]; then
+        echo $2 >&2
+        exit
+    fi
+}
+
 read -p "External or internal? [ei] "
 if [[ "$REPLY" == "e" ]]; then
+    TYPE=e
     TEMPLATE="$THIS_DIR/dn42e.conf.dis"
     read -p "Peer's ASN suffix: "
     if [[ ${#REPLY} != 4 ]]; then
@@ -14,12 +23,10 @@ if [[ "$REPLY" == "e" ]]; then
     export PEER_ASN_SUFFIX=$REPLY
     TARGET=/etc/bird/peers/dn42e-${PEER_ASN_SUFFIX}.conf
 else
+    TYPE=i
     TEMPLATE="$THIS_DIR/dn42i.conf.dis"
     read -p "Peer's name: "
-    if [[ -z "$REPLY" ]]; then
-        echo "Please provide the peer name" >&2
-        exit
-    fi
+    test_not_empty "$REPLY" "Please provide the peer name"
     export PEER_NAME=$REPLY
     TARGET=/etc/bird/peers/dn42i-${PEER_NAME}.conf
 fi
@@ -29,13 +36,15 @@ if [[ -f $TARGET ]]; then
     exit
 fi
 
-read -p "Peer's link-local address suffix: "
-REPLY=${REPLY,,}
-if [[ -z "$REPLY" ]]; then
-    echo "Please provide the address" >&2
-    exit
+if [[ "$TYPE" == "e" ]]; then
+    read -p "Peer's link-local address suffix: "
+    test_not_empty "$REPLY" "Please provide the address"
+    export PEER_LA_SUFFIX=${REPLY,,}
+else
+    read -p "Peer's GUA (in dn42, it's a ULA) suffix: "
+    test_not_empty "$REPLY" "Please provide the address"
+    export PEER_GUA_SUFFIX=${REPLY,,}
 fi
-export PEER_LA_SUFFIX=$REPLY
 
 OUTPUT=$(envsubst < "$TEMPLATE")
 echo "target file: $TARGET"

@@ -1,7 +1,6 @@
 protocol bgp dn42i_${PEER_NAME}_v6 from dnpeers {
     local as OWNAS;
-    neighbor fe80::${PEER_LA_SUFFIX} % 'dn42i-${PEER_NAME}' as OWNAS;
-    direct;
+    neighbor fda5:adba:5953::${PEER_GUA_SUFFIX} as OWNAS;
     ipv4 {
         next hop self;
         # cost 50;
