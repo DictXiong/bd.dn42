@@ -1,5 +1,5 @@
 [Interface]
-PrivateKey = ${MY_PRIVATE_KEY} 
+PrivateKey = ${MY_PRIVATE_KEY}
 ListenPort = ${MY_PORT}
 Table = off
 PostUp = ip addr add fe80::${MY_LA_SUFFIX}/64 dev %i
