@@ -12,7 +12,10 @@ rpki() {
 }
 
 border() {
-    rsync -rv "$THIS_DIR"/border/etc/ /etc/
+    rsync -rv --exclude "bird.conf" "$THIS_DIR"/border/etc/ /etc/
+    if [[ ! -f /etc/bird/bird.conf ]]; then
+        cp "$THIS_DIR"/border/etc/bird.conf /etc/bird.conf
+    fi
 }
 
 $1
