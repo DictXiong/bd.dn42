@@ -31,12 +31,6 @@ else
     test_not_empty "$REPLY" "Please provide the peer name"
     export PEER_NAME=$REPLY
     TARGET=/etc/wireguard/dn42i-${PEER_NAME}.conf
-    read -p "Your port: "
-    if [[ $REPLY > 65535 || $REPLY < 1 ]]; then
-        echo "Invalid port number"
-        exit
-    fi
-    export MY_PORT=$REPLY
 fi
 if [[ -f $TARGET ]]; then
     echo "Target file $TARGET already exists"
@@ -75,10 +69,16 @@ export PEER_ADDR=$REPLY
 read -p "Peer pubkey: "
 test_not_empty "$REPLY" "Please provide peer's pubkey"
 export PEER_PUBLIC_KEY=$REPLY
-read -p "Peer endpoint: "
-test_not_empty "$REPLY" "Please provide peer's endpoint"
-export PEER_ENDPOINT=$REPLY
-
+if [[ "$TYPE" == "e" ]]; then
+    read -p "Peer endpoint: "
+    test_not_empty "$REPLY" "Please provide peer's endpoint"
+    export PEER_ENDPOINT=$REPLY
+else
+    read -p "Peer endpoint address: "
+    test_not_empty "$REPLY" "Please provide peer's endpoint"
+    export PEER_ENDPOINT=$REPLY:$((${MY_ADDR##*.}+48000))
+    export MY_PORT=$((${PEER_ADDR##*.}+48000))
+fi
 OUTPUT=$(envsubst < "$TEMPLATE")
 echo "target file: $TARGET"
 echo "file content: "
