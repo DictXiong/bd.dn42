@@ -1,0 +1,37 @@
+$TTL    600
+bd.dn42.        IN      SOA     ns1.bd.dn42. admin.bd.dn42. (
+                                202312210       ; Serial
+                                7200            ; Refresh
+                                3600            ; Retry
+                                604800          ; Expire
+                                7200 )          ; Negative Cache TTL
+;
+
+; Name servers
+@               IN      NS      ns1.bd.dn42.
+@               IN      NS      ns2.bd.dn42.
+
+; A records
+@               IN      A       172.21.123.65
+@               IN      AAAA    fda5:adba:5953::1
+ns1             IN      A       172.21.123.65
+ns1             IN      AAAA    fda5:adba:5953::1
+ns2             IN      A       172.21.123.67
+ns2             IN      AAAA    fda5:adba:5953::3
+
+cn0.i           IN      A       172.21.123.65
+cn0.i           IN      AAAA    fda5:adba:5953::1
+sir0.i          IN      A       172.21.123.66
+sir0.i          IN      AAAA    fda5:adba:5953::2
+sg0.i           IN      A       172.21.123.67
+sg0.i           IN      AAAA    fda5:adba:5953::3
+pi1.i           IN      A       172.21.123.68
+pi1.i           IN      AAAA    fda5:adba:5953::4
+cn1.i           IN      A       172.21.123.69
+cn1.i           IN      AAAA    fda5:adba:5953::5
+
+; CNAME records
+status          IN      CNAME   cn1.i
+drive           IN      CNAME   sir0.i
+dns             IN      CNAME   cn1.i
+

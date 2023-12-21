@@ -1,0 +1,20 @@
+$TTL    600
+64/26.123.21.172.in-addr.arpa.  IN      SOA     ns1.bd.dn42. admin.bd.dn42. (
+                                202312210       ; Serial
+                                7200            ; Refresh
+                                3600            ; Retry
+                                604800          ; Expire
+                                7200 )          ; Negative Cache TTL
+;
+
+; Name servers
+@               IN      NS      ns1.bd.dn42.
+@               IN      NS      ns2.bd.dn42.
+
+; PTR records
+65              IN      PTR     cn0.i.bd.dn42.
+66              IN      PTR     sir0.i.bd.dn42.
+67              IN      PTR     sg0.i.bd.dn42.
+68              IN      PTR     pi1.i.bd.dn42.
+69              IN      PTR     cn1.i.bd.dn42.
+

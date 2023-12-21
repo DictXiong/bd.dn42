@@ -1,0 +1,20 @@
+$TTL    600
+3.5.9.5.a.b.d.a.5.a.d.f.ip6.arpa.           IN      SOA     ns1.bd.dn42. admin.bd.dn42. (
+                                                            202312210       ; Serial
+                                                            7200            ; Refresh
+                                                            3600            ; Retry
+                                                            604800          ; Expire
+                                                            7200 )          ; Negative Cache TTL
+;
+
+; Name servers
+@                                           IN      NS      ns1.bd.dn42.
+@                                           IN      NS      ns2.bd.dn42.
+
+; PTR records
+1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0     IN      PTR     cn0.i.bd.dn42.
+2.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0     IN      PTR     sir0.i.bd.dn42.
+3.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0     IN      PTR     sg0.i.bd.dn42.
+4.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0     IN      PTR     pi1.i.bd.dn42.
+5.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0     IN      PTR     cn1.i.bd.dn42.
+
